@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Undangan — Botanical Luxury (Template)</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f8f5;
+      --emerald: #9bbf9f; /* soft green */
+      --emerald-2:#7aa67f;
+      --gold: #d4af37;
+      --muted:#6b6b6b;
+      --card-w:1100px;
+      --radius:14px;
+      --accent: #eaf4ea;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Montserrat,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#222;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+
+    /* wrapper */
+    .wrap{max-width:var(--card-w);margin:18px auto;padding:20px}
+    .card{background:transparent;border-radius:12px;padding:0;overflow:hidden}
+
+    /* Opening (selection 1) - full screen overlay with background photo */
+    .opening-1{position:fixed;inset:0;display:grid;place-items:center;background:#000;z-index:9999}
+    .opening-1 .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.45)}
+    .opening-1 .content{position:relative;z-index:2;text-align:center;color:#fff;padding:24px;max-width:760px;width:100%}
+    .opening-1 h1{font-family:'Playfair Display',serif;font-size:clamp(22px,4.5vw,36px);margin:0 0 8px 0;letter-spacing:1px}
+    .opening-1 .couple{font-family:'Playfair Display',serif;font-size:clamp(28px,7vw,56px);margin:8px 0;background:linear-gradient(90deg,var(--emerald-2),#b5d6b8);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .opening-1 .invite-to{margin-top:8px;font-size:14px;opacity:.95}
+    .opening-1 .open-btn{margin-top:20px;padding:12px 22px;border-radius:999px;background:linear-gradient(90deg,var(--emerald-2),var(--emerald));border:2px solid rgba(255,255,255,0.14);font-weight:700;cursor:pointer}
+
+    /* Ornament di opening */
+.opening-1 .ornament.kiri {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;      /* sesuaikan ukuran */
+  height: 140px;
+  background-image: url('img/ornament-kiri.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.4;      /* transparansi agar elegan */
+  pointer-events: none; /* agar tidak mengganggu klik */
+  z-index: 2;
+}
+
+.opening-1 .ornament.kanan {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 140px;
+  background-image: url('img/ornament-kanan.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+    /* Section wrapper visible after open */
+    main.container{max-width:1000px;margin:24px auto;padding:18px}
+
+    /* Hero section */
+    .hero-orn {
+     position: relative;
+     width: 100%;
+  height: 400px;
+  padding: 36px 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), #fbfbfb);
+  box-shadow: 0 8px 30px rgba(10,20,10,0.06);
+}
+
+/* Ornament kiri & kanan */
+.orn-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orn-wrap.kiri {
+  background-image: url('img/ornament-kiri.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+}
+
+.orn-wrap.kanan {
+  background-image: url('img/ornament-kanan.png');
+  background-size: contain;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+}
+
+/* Konten hero */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 220px;
+}
+
+.hero-text h2 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  font-size: clamp(20px,4.5vw,32px);
+  color: var(--emerald-2);
+}
+
+.hero-text .date {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+/* Kupu-kupu animasi */
+.butterfly {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  background-image: url('img/ornamentkupu-kupu.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float 6s infinite;
+}
+
+/* Posisi & durasi berbeda */
+.butterfly.b1 { left: 6%; top: 20%; animation-duration: 7s; transform: scale(1); }
+.butterfly.b2 { right: 8%; top: 10%; animation-duration: 5.5s; transform: scale(0.8); }
+.butterfly.b3 { left: 20%; bottom: 18%; animation-duration: 6.5s; transform: scale(1.2); }
+.butterfly.b4 { left: 50%; top: 30%; animation-duration: 6.8s; transform: scale(0.9); }
+.butterfly.b5 { right: 20%; bottom: 25%; animation-duration: 5.7s; transform: scale(1.1); }
+.butterfly.b6 { left: 35%; top: 50%; animation-duration: 6.2s; transform: scale(1); }
+
+/* Animasi naik-turun + rotasi */
+@keyframes float {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  25%  { transform: translate(10px,-10px) rotate(10deg); }
+  50%  { transform: translate(-10px,-18px) rotate(-12deg); }
+  75%  { transform: translate(5px,-5px) rotate(8deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+.hero-orn .bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  border-radius: 14px;
+  opacity: 0.2; /* 0 = transparan total, 1 = penuh */
+}
+.hero-orn .bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.4); /* putih lembut, bisa ganti warna */
+  z-index: 1;
+  border-radius: 14px;
+}
+    /* Section 3 - Couple photo + initials + hadist */
+    .couple-block{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:center;margin-top:26px}
+    @media(max-width:880px){.couple-block{grid-template-columns:1fr;}}
+    .couple-photo{border-radius:12px;overflow:hidden;background:#fff;padding:6px;border:1px solid rgba(0,0,0,0.04)}
+    .couple-photo img{width:100%;height:auto;display:block}
+    .couple-meta{background:var(--accent);padding:18px;border-radius:12px}
+    .initials{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--emerald-2)}
+    .hadist{margin-top:12px;color:var(--muted);font-size:14px}
+
+    /* Section 4 - We Are Getting Married + individual photo */
+    .we-are{margin-top:28px;background:linear-gradient(180deg,#fff,#fff);padding:28px;border-radius:12px;display:flex;gap:20px;align-items:center}
+    .we-are .left{flex:1}
+    .we-are h3{font-family:'Playfair Display',serif;margin:0;font-size:28px;color:var(--emerald-2)}
+    .person-card{width:220px;border-radius:12px;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.04);padding:12px;text-align:center}
+    .person-card img{width:100%;height:280px;object-fit:cover;border-radius:8px}
+    .person-card .name{font-weight:700;margin-top:8px}
+    .person-card .meta{font-size:13px;color:var(--muted);margin-top:6px}
+    .socials{display:flex;gap:8px;justify-content:flex-start;margin-top:10px}
+    .socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(0,0,0,0.04);font-size:13px}
+
+    /* Section 5 - Save the date + countdown */
+    .save-date{margin-top:26px;background:linear-gradient(180deg,#fff,#fff);padding:20px;border-radius:12px;display:flex;gap:24px;align-items:center;justify-content:space-between}
+    .countdown{font-weight:700;font-size:18px}
+    @media(max-width:720px){.save-date{flex-direction:column;align-items:flex-start}}
+
+    /* Section 6 & 7 - Akad & Resepsi */
+    .event{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media(max-width:880px){.event{grid-template-columns:1fr}}
+    .event .card{background:var(--accent);padding:16px;border-radius:12px}
+    .event .card .loc{margin-top:8px;color:var(--muted)}
+    .map-btn{display:inline-block;margin-top:10px;padding:10px 14px;border-radius:8px;background:linear-gradient(90deg,var(--emerald),var(--emerald-2));color:#fff;text-decoration:none}
+
+    /* Section 8 - Live streaming */
+    .live{margin-top:18px;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff);text-align:center}
+    .live a.btn-live{display:inline-block;padding:10px 16px;border-radius:8px;background:#e74c3c;color:#fff;text-decoration:none}
+
+    /* Section 9 - Gallery complex layout */
+    .gallery-grid{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .gallery-grid .left{display:grid;grid-template-rows:repeat(2,1fr);gap:14px}
+    .gallery-grid .left .big{border-radius:12px;overflow:hidden}
+    .gallery-grid .right{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .gallery-grid img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* third row slider */
+    .gallery-slider{margin-top:12px;overflow:hidden;border-radius:12px}
+    .slider-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px}
+    .slide{min-width:220px;height:140px;border-radius:10px;overflow:hidden;flex:0 0 auto;scroll-snap-align:center}
+
+    /* Section 10 - Love story */
+    .love-story{margin-top:22px;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff);position:relative}
+    .love-story:before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:-28px;width:220px;height:120px;background-image:url('img/floral-top.png');background-size:contain;background-repeat:no-repeat;opacity:.95}
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    @media(max-width:900px){.timeline{grid-template-columns:1fr}}
+    .timeline .item{background:var(--accent);padding:12px;border-radius:10px}
+
+    /* Section 11 - Love gift */
+    .gifts{margin-top:18px;display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media(max-width:880px){.gifts{grid-template-columns:1fr}}
+    .gift-card{background:linear-gradient(180deg,#fff,#fff);padding:16px;border-radius:12px}
+    .copy-btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--emerald-2);color:#fff;cursor:pointer;margin-left:8px}
+
+    /* Section 12 - Wishes */
+    .wishes{margin-top:18px;padding:16px;background:linear-gradient(180deg,#fff,#fff);border-radius:12px}
+    .wishes form .row{display:flex;gap:8px}
+    .wishes input,.wishes textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6}
+    .wishes .list{margin-top:12px}
+
+    /* Closing (background photo like opening) */
+    .closing{margin-top:22px;padding:28px;border-radius:12px;background-size:cover;background-position:center;color:#fff;text-align:center}
+    .brand{margin-top:12px;opacity:.9}
+
+    /* utilities */
+    .muted{color:var(--muted)}
+    button{cursor:pointer}
+
+    .fade-up {
+     opacity: 0;
+     transform: translateY(40px);
+     transition: all 1s ease;
+    }
+    .fade-up.show {
+     opacity: 1;
+     transform: translateY(0);
+    }
+
+    /* music control */
+    .music-control {
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      z-index:99999;
+    }
+    #musicBtn {
+      width:54px; height:54px; border-radius:50%; border:none; cursor:pointer;
+      background:rgba(255,255,255,0.95); box-shadow:0 8px 24px rgba(0,0,0,0.12); font-size:20px;
+    }
+
+    footer{ text-align:center; color:var(--muted); margin-top:18px; font-size:13px }
+
+    /* Responsif untuk layar max 720px (HP) */
+@media (max-width: 720px) {
+  .wrap {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .hero-orn {
+    height: auto; /* agar tidak terpotong */
+    padding: 20px;
+  }
+
+  .couple-block {
+    grid-template-columns: 1fr; /* ubah jadi satu kolom */
+  }
+
+  .we-are {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .person-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .slider-track .slide {
+    min-width: 80%;
+  }
+}
+
+  </style>
+</head>
+<body>
+<!-- Music (starts when openBtn clicked) -->
+  <!-- Put a file assets/music.mp3 in your folder -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="music/backsound.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- small music control (toggle after opening) -->
+  <div class="music-control" id="musicControl" style="display:none">
+    <button id="musicBtn" title="Play / Pause">♫</button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" role="application" aria-label="Undangan Digital — Botanical Luxury">
+
+  <!-- OPENING 1 - background photo + button. reads ?to=Name from URL -->
+  <div class="opening-1 fade-up" id="opening1">
+  <!-- background -->
+  <div class="bg fade-up" id="opening1Bg" style="background-image:url('img/bg-cover1.jpg')"></div>
+
+  <!-- Ornament kiri & kanan -->
+  <div class="ornament kiri"></div>
+  <div class="ornament kanan"></div>
+
+  <!-- content -->
+  <div class="content">
+    <h1>The Wedding of</h1>
+    <div class="couple fade-up" id="coupleNames">Elyana &amp; Syahril</div>
+    <div class="invite-to fade-up">Kepada Yth: <span id="guestName">Tamu Undangan</span></div>
+    <div>
+      <button class="open-btn fade-up" id="openBtn">Buka Undangan</button>
+    </div>
+  </div>
+</div>
+
+  <main class="container">
+    <div class="card">
+      <!-- Section hero dengan kupu-kupu animasi -->
+    <section class="hero-orn" id="section2">
+  <!-- background -->
+  <div class="bg fade-up" id="opening1Bg" style="background-image:url('img/ormanent-mid.png')"></div>
+
+  <!-- Kupu-kupu animasi -->
+  <div class="butterfly b1"></div>
+  <div class="butterfly b2"></div>
+  <div class="butterfly b3"></div>
+  <div class="butterfly b4"></div>
+  <div class="butterfly b5"></div>
+  <div class="butterfly b6"></div>
+
+  <!-- Konten hero -->
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h2 id="heroCouple">Elyana &amp; Syahril</h2>
+      <div class="date">Sabtu, 10 Januari 2026</div>
+    </div>
+    <div style="flex-basis:220px;min-width:160px">
+      <img src="img/ornament-kanan.png" alt="orn" style="width:100%;opacity:.95">
+    </div>
+  </div>
+</section>
+
+
+      <!-- Section 3 - couple photo + initials + hadist -->
+      <section class="couple-block fade-up">
+        <div class="couple-photo fade-up">
+          <img src="img/gallery1.jpg" alt="Couple">
+        </div>
+        <div class="couple-meta fade-up">
+          <div class="initials" id="initials">E &amp; S</div>
+          <div class="hadist fade-up"></div>Perkawinan adalah sunnah Rasul" — (contoh hadist / ayat pendek dapat diganti)</div>
+        </div>
+      </section>
+
+      <!-- Section 4 - We Are Getting Married -->
+      <section class="we-are">
+        <div class="left fade-up">
+          <h3 class="fade-up">We Are Getting Married</h3>
+          <p class="muted fade-up" style="margin-top:8px">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a href="#rsvp" class="map-btn fade-up">Konfirmasi Kehadiran</a>
+            <a href="#gallery" class="map-btn fade-up" style="background:#fff;color:var(--emerald-2);border:1px solid rgba(0,0,0,0.06)">Lihat Galeri</a>
+          </div>
+        </div>
+
+        <div class="person-card fade-up">
+          <img class=" fade-up" src="img/mempelai-pria.jpg" alt="Elyana">
+          <div class="name fade-up">Elyana Azkiya Nur</div>
+          <div class="meta fade-up">Putri dari Bapak Nasrudin Hatta &amp; Ibu Elma Muna</div>
+          <div class="socials fade-up">
+            <a href="https://instagram.com/your_instagram" target="_blank">@elyana <small class="muted">(Instagram)</small></a>
+          </div>
+        </div>
+
+        <div class="person-card fade-up">
+          <img src="img/mempelai-wanita.jpg" alt="Elyana">
+          <div class="name fade-up">Elyana Azkiya Nur</div>
+          <div class="meta fade-up">Putri dari Bapak Nasrudin Hatta &amp; Ibu Elma Muna</div>
+          <div class="socials fade-up">
+            <a href="https://instagram.com/your_instagram" target="_blank">@elyana <small class="muted">(Instagram)</small></a>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section 5 - Save the date & countdown -->
+      <section class="save-date fade-up">
+        <div>
+          <div style="font-weight:700">Save the Date</div>
+          <div class="muted fade-up">Sabtu, 10 Januari 2026 — Akad &amp; Resepsi</div>
+        </div>
+        <div class="countdown fade-up" id="countdown">-- Hari : -- Jam : -- Menit : -- Detik</div>
+      </section>
+
+      <!-- Section 6 & 7 - Akad & Resepsi -->
+      <section class="event fade-up">
+        <div class="card fade-up">
+          <div class= "fade-up" style="font-weight:700">Akad Nikah</div>
+          <div class="loc fade-up">Sabtu, 10 Jan 2026 — 10:00 WIB</div>
+          <div class="loc fade-up">Gedung Serbaguna Magnolia</div>
+          <a class="map-btn fade-up" href="https://www.google.com/maps?q=Jl.+Bunga+Raya+No.10+Jakarta" target="_blank">Lihat di Maps</a>
+        </div>
+
+        <div class="card">
+          <div class= "fade-up" style="font-weight:700">Resepsi Pernikahan</div>
+          <div class="loc fade-up">Sabtu, 10 Jan 2026 — 12:00 — 15:00 WIB</div>
+          <div class="loc fade-up">Gedung Serbaguna Magnolia</div>
+          <a class="map-btn fade-up" href="https://www.google.com/maps?q=Jl.+Bunga+Raya+No.10+Jakarta" target="_blank">Lihat di Maps</a>
+        </div>
+      </section>
+
+      <!-- Section 8 - Live streaming -->
+      <section class="live fade-up">
+        <div class= "fade-up" style="font-weight:700">Live Streaming</div>
+        <p class="muted fade-up">Tidak bisa hadir? Ikuti live streaming acara melalui Instagram kami.</p>
+        <a class="btn-live fade-up" href="https://instagram.com/your_instagram" target="_blank">Tonton Live di Instagram</a>
+      </section>
+
+      <!-- Section 9 - Gallery complex layout + slider -->
+      <section class="gallery-grid fade-up">
+        <div class="left fade-up">
+          <div class="big fade-up"><img src="img/gallery1.jpg" alt=""></div>
+          <div class="big fade-up"><img src="img/gallery2.jpg" alt=""></div>
+        </div>
+        <div class="right fade-up">
+          <div class= "fade-up" style="height:160px;border-radius:12px;overflow:hidden"><img src="img/gallery3.jpg" alt=""></div>
+          <div style="height:160px;border-radius:12px;overflow:hidden"><img src="img/gallery4.jpg" alt=""></div>
+        </div>
+      </section>
+      <div class="gallery-slider fade-up">
+        <div class="slider-track" id="sliderTrack">
+          <div class="fade-up slide"><img src="img/gallery5.jpg" alt=""></div>
+          <div class="fade-up slide"><img src="img/gallery6.jpg" alt=""></div>
+          <div class="fade-up slide"><img src="img/gallery7.jpg" alt=""></div>
+          <div class="fade-up slide"><img src="img/gallery8.jpg" alt=""></div>
+        </div>
+      </div>
+
+     <!-- Section 10 - Love story -->
+<section class="love-story fade-up bg-blur" style="background-image:url('img/ornament-top.png')">
+
+  <div class="content fade-up">
+    <h3 class="fade-up" style="margin:0">Love Story</h3>
+
+    <div class="timeline fade-up">
+      <div class="item fade-up">
+        <strong>Bertemu</strong>
+        <div class="muted">Tahun 2018 — Di acara keluarga</div>
+      </div>
+
+      <div class="item fade-up">
+        <strong>Tunangan</strong>
+        <div class="muted">Tahun 2024 — Lamaran sederhana</div>
+      </div>
+
+      <div class="item fade-up">
+        <strong>Menikah</strong>
+        <div class="muted">10 Januari 2026 — Menyusun rencana</div>
+      </div>
+    </div>
+
+  </div>
+      </section>
+
+      <!-- Section 11 - Gifts -->
+      <section class="gifts fade-up">
+        <div class="gift-card">
+          <div class= "fade-up" style="font-weight:700">Gift & Hadiah</div>
+          <div class= "fade-up" style="margin-top:8px">Terima kasih atas niat baik Anda membantu persiapan pernikahan kami. <br>Silakan transfer ke:</div>
+          <div class= "fade-up" style="margin-top:12px;font-weight:700">Bank ABC — 1234567890</div>
+          <div class= "fade-up" style="margin-top:8px">a.n. Nama Pemilik
+            <button class="copy-btn fade-up" data-copy="1234567890" id="copyRek">Salin No. Rek</button>
+          </div>
+          <div class= "fade-up" style="margin-top:12px">Atau kirimkan kado ke alamat:</div>
+          <div class="muted fade-up" id="addressText">Jl. Bunga Raya No.10, Jakarta</div>
+          <div class= "fade-up" style="margin-top:8px"><button class="copy-btn" data-copy="Jl. Bunga Raya No.10, Jakarta" id="copyAddr">Salin Alamat</button></div>
+        </div>
+        <div>
+          <div class= "fade-up" style="font-weight:700;margin-bottom:8px">Kirim Kado</div>
+          <div class= "fade-up" style="background:var(--accent);padding:12px;border-radius:8px">Silakan kemas rapi dan cantumkan nama tamu di paket.</div>
+          <div class= "fade-up" style="margin-top:12px">Terima kasih atas doa dan dukungan Anda.</div>
+        </div>
+      </section>
+
+      <!-- Section 12 - Wishes (ucapan tamu) -->
+      <section class="wishes fade-up" id="wishes">
+        <h3 class= "fade-up">Ucapan & Doa</h3>
+        <form id="wishForm" style="margin-top:12px">
+          <div class="row fade-up" style="gap:8px;flex-wrap:wrap">
+            <input type="text" name="name" placeholder="Nama" required style="flex:1;min-width:140px">
+            <input type="text" name="ig" placeholder="Instagram (opsional)" style="flex:1;min-width:140px">
+          </div>
+          <div style="margin-top:8px">
+            <textarea name="message" rows="3" placeholder="Ucapan / Doa" style="width:100%"></textarea>
+          </div>
+          <div style="margin-top:8px;text-align:right">
+            <button type="submit" class="map-btn">Kirim Ucapan</button>
+          </div>
+        </form>
+
+        <div class="list" id="wishList">
+          <div class="muted fade-up">Belum ada ucapan.</div>
+        </div>
+      </section>
+
+      <!-- Closing (background photo + brand) -->
+      <section class="closing fade-up" style="background-image:url('img/bg-cover3.jpg');background-size:cover;background-position:center;margin-top:20px;padding:40px;border-radius:12px">
+        <h2 class= "fade-up" style="margin:0;font-family:'Playfair Display',serif;color:#fff">Terima Kasih</h2>
+        <div class="muted fade-up" style="margin-top:8px;color:rgba(255,255,255,0.9)">Kami tunggu doa restu & kehadiran Anda.</div>
+        <div class="brand fade-up"><img src="img/logo.png" alt="brand" style="height:36px;opacity:.95"><div style="font-weight:700;color:rgba(255,255,255,0.95);margin-top:8px">YELLOW -STD</div></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- small script -->
+  <script>
+    // get guest name from url param ?to=Name
+    function getQuery(name){const u=new URLSearchParams(location.search);return u.get(name)||''}
+    const guest = decodeURIComponent(getQuery('to')||getQuery('name')||'Tamu Undangan');
+    document.getElementById('guestName').textContent = guest || 'Tamu Undangan';
+    const openBtn = document.getElementById('openBtn');
+    const opening1 = document.getElementById('opening1');
+    const heroSection = document.getElementById('section2');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicControl = document.getElementById('musicControl');
+    const musicBtn = document.getElementById('musicBtn');
+
+    openBtn.addEventListener('click', () => {
+    // sembunyikan opening
+    opening1.style.display = 'none';
+
+    // mainkan musik (user sudah klik)
+    bgMusic.play().catch(()=>{ /* ignore */ });
+
+    // tampilkan kontrol musik
+    musicControl.style.display = 'block';
+    musicBtn.textContent = '⏸';
+
+    // tampilkan hero dengan fade-up
+    heroSection.classList.add('show');
+
+    // scroll ke top
+    setTimeout(()=> window.scrollTo({top:0,behavior:'smooth'}), 100);
+    });
+
+    // tombol musik play/pause
+    musicBtn.addEventListener('click', () => {
+    if(bgMusic.paused){
+    bgMusic.play();
+    musicBtn.textContent = '⏸';
+    } else {
+    bgMusic.pause();
+    musicBtn.textContent = '♫';
+    }
+    });
+
+    // Tampilkan hero dengan fade-up
+    heroSection.classList.add('show');
+    // focus first section
+      setTimeout(()=> window.scrollTo({top:0,behavior:'smooth'}),650);
+    ;
+    
+
+    // fill couple names if present
+    const heroCouple = document.getElementById('heroCouple');
+    const coupleNames = 'Elyana & Syahril';
+    heroCouple.textContent = coupleNames;
+    document.getElementById('coupleNames').textContent = coupleNames;
+    document.getElementById('initials').textContent = coupleNames.split(' ').map(s=>s[0]).filter(Boolean).slice(0,2).join(' & ');
+
+    // countdown
+    (function(){
+      const wedding = new Date(2026,0,10,10,0,0).getTime();
+      const el = document.getElementById('countdown');
+      if(!el) return;
+      function tick(){
+        const now = Date.now();
+        const diff = wedding - now;
+        if(diff<=0){el.textContent='Hari H!';clearInterval(iv);return}
+        const d = Math.floor(diff/86400000);
+        const h = Math.floor((diff%86400000)/3600000);
+        const m = Math.floor((diff%3600000)/60000);
+        const s = Math.floor((diff%60000)/1000);
+        el.textContent = `${String(d).padStart(2,'0')} Hari : ${String(h).padStart(2,'0')} Jam : ${String(m).padStart(2,'0')} Menit : ${String(s).padStart(2,'0')} Detik`;
+      }
+      tick();
+      const iv = setInterval(tick,1000);
+    })();
+
+    // gallery slider simple: allow drag scroll
+    const track = document.getElementById('sliderTrack');
+    if(track){let isDown=false,startX,scrollLeft;track.addEventListener('mousedown',e=>{isDown=true;track.classList.add('active');startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft});track.addEventListener('mouseleave',()=>{isDown=false});track.addEventListener('mouseup',()=>{isDown=false});track.addEventListener('mousemove',e=>{if(!isDown) return;e.preventDefault;const x=e.pageX-track.offsetLeft;const walk=(x-startX)*1.2;track.scrollLeft=scrollLeft-walk});}
+
+    // copy functions for bank & address
+    function copyToClipboard(text){navigator.clipboard && navigator.clipboard.writeText(text).then(()=>{alert('Tersalin: '+text)}, ()=>{prompt('Copy teks berikut:', text)})}
+    document.getElementById('copyRek').addEventListener('click', function(){copyToClipboard(this.dataset.copy)});
+    document.getElementById('copyAddr').addEventListener('click', function(){copyToClipboard(this.dataset.copy)});
+
+    // wishes (localStorage)
+    const wishForm = document.getElementById('wishForm');
+    const wishList = document.getElementById('wishList');
+    function loadWishes(){const data = JSON.parse(localStorage.getItem('wishes')||'[]');renderWishes(data);return data}
+    function renderWishes(data){if(!data.length){wishList.innerHTML='<div class="muted">Belum ada ucapan.</div>';return}wishList.innerHTML='';data.slice().reverse().forEach(w=>{const el=document.createElement('div');el.style.borderBottom='1px solid rgba(0,0,0,0.04)';el.style.padding='8px 0';el.innerHTML=`<strong>${escapeHtml(w.name)}</strong> <span class="muted">${w.ig?('@'+escapeHtml(w.ig)):''}</span><div style="margin-top:6px">${escapeHtml(w.message)}</div>`;wishList.appendChild(el)})}
+    function escapeHtml(s){return (s||'').toString().replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]||m))}
+    loadWishes();
+    wishForm.addEventListener('submit', e=>{e.preventDefault();const fd=new FormData(wishForm);const obj=Object.fromEntries(fd.entries());const arr=loadWishes();arr.push({name:obj.name||'Tamu',ig:obj.ig||'',message:obj.message||'',time:new Date().toISOString()});localStorage.setItem('wishes',JSON.stringify(arr));renderWishes(arr);wishForm.reset();alert('Terima kasih! Ucapan Anda tersimpan.')});
+
+    // small accessibility: allow open via keyboard
+    openBtn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') openBtn.click(); });
+
+    // IntersectionObserver fade-up global
+    const observer = new IntersectionObserver((entries)=>{
+     entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+    });
+    });
+
+    // daftar semua elemen fade-up
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
